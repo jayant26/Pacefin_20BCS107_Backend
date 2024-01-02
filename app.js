@@ -44,7 +44,7 @@ pool.getConnection((err, connection) => {
 
     executeQuery(connection, `CREATE DATABASE IF NOT EXISTS ${process.env.DB_DBNAME}`, 'Database Created Successfully', 'Error Creating Database : ', () => {
     
-        executeQuery(connection, `USE PACEFIN`, 'Using Database Successfully', 'Error accessing Database : ', () => {
+        executeQuery(connection, `USE ${process.env.DB_DBNAME}`, 'Using Database Successfully', 'Error accessing Database : ', () => {
     
             executeQuery(connection, `
                 CREATE TABLE IF NOT EXISTS tasks (
