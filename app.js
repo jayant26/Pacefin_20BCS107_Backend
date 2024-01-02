@@ -12,6 +12,7 @@ const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    database:process.env.DB_DBNAME,
     connectionLimit: 5
 });
 
@@ -41,7 +42,7 @@ pool.getConnection((err, connection) => {
     }
     console.log("Connected Successfully");
 
-    executeQuery(connection, `CREATE DATABASE IF NOT EXISTS PACEFIN`, 'Database Created Successfully', 'Error Creating Database : ', () => {
+    executeQuery(connection, `CREATE DATABASE IF NOT EXISTS ${process.env.DB_DBNAME}`, 'Database Created Successfully', 'Error Creating Database : ', () => {
     
         executeQuery(connection, `USE PACEFIN`, 'Using Database Successfully', 'Error accessing Database : ', () => {
     
